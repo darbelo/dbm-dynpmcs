@@ -41,8 +41,9 @@ No Configure step, no Makefile generated.
     # build
     $P2 = new 'Hash'
     $P3 = split ' ', 'src/pmc/gdbmhash.pmc'
-    $P2['gdbmhash'] = $P3
+    $P2['dbm'] = $P3
     $P0['dynpmc'] = $P2
+    $P0['dynpmc_ldflags'] = "-lgdbm"
 
     #test
     $S0 = get_parrot()
