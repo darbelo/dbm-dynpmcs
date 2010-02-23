@@ -109,6 +109,7 @@ main(int argc, char *argv[])
 }
 SOURCE_C
 
+    unlink('gdbm_test_db')
     $I0 = index $S0, "gdbm is working."
     if $I0 == 0 goto L1
     die $S0
