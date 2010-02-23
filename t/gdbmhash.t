@@ -133,7 +133,7 @@ Tests the C<GDBMHash> PMC.
     ok(1, 'An uninitialized GDBMHash is not')
 HASH1_IS_1:
 
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_2"
     if hash_1 goto HASH1_IS_2
     ok(1, 'A GDBMHash for a new file is not')
 HASH1_IS_2:
@@ -144,7 +144,7 @@ HASH1_IS_2:
 HASH1_IS_3:
     ok(1, 'After one insert the GDBMHash is')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_2')
 .end
 
 # The value is a STRING, with umlaut
@@ -154,7 +154,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_3"
 
     .local pmc    val_pmc
 
@@ -171,7 +171,7 @@ HASH1_IS_3:
     val_pmc = hash_1["Schluessel"]
     is(val_pmc, 'Wert urspruenglich', 'modify an entry')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_3')
 .end
 
 # The value is a STRING.
@@ -181,7 +181,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_4"
 
     hash_1["Schluessel"] = "Wert"
 
@@ -200,7 +200,7 @@ HASH1_IS_3:
     exist_flag = exists hash_1[key_out]
     is(exist_flag, 1, 'exists keyed')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_4')
 .end
 
 # The value is a STRING.
@@ -210,7 +210,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_5"
 
     hash_1["Schluessel"] = "Wert"
 
@@ -229,7 +229,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, 'Wert', 'set string with string key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_5')
 .end
 
 # The value is a STRING.
@@ -239,7 +239,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_6"
 
     .local pmc key_pmc
     key_pmc = new 'String'
@@ -261,7 +261,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, 'Wert', 'set string with pmc key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_6')
 .end
 
 # The value is a PMC.
@@ -271,7 +271,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_7"
 
     .local pmc val
     val = new 'String'
@@ -293,7 +293,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, 'Wert', 'set pmc with string key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_7')
 .end
 
 # The value is a PMC.
@@ -303,7 +303,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_8"
 
     .local pmc val
     val = new 'String'
@@ -328,7 +328,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, 'Wert', 'set pmc with pmc key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_8')
 .end
 
 # The value is an INTVAL
@@ -338,7 +338,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_9"
 
     hash_1["Schluessel"] = -11012005
 
@@ -357,7 +357,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, -11012005, 'set intval with a string key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_9')
 .end
 
 # The value is a FLOATVAL.
@@ -367,7 +367,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_10"
 
     .local pmc key_pmc
     key_pmc = new 'String'
@@ -389,7 +389,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, -1101.2005, 'set float with a pmc key')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_10')
 .end
 
 .sub test_delete_keyed
@@ -397,7 +397,7 @@ HASH1_IS_3:
     gdbmhash_lib = loadlib "gdbmhash"
     .local pmc hash_1
     hash_1 = new "GDBMHash"
-    hash_1 = "gdbm_hash_1"
+    hash_1 = "gdbm_hash_11"
 
     .local int exist_flag
     .local int hash_size
@@ -413,7 +413,7 @@ HASH1_IS_3:
     exist_flag = exists hash_1["a"]
     is(exist_flag, 0, 'delete keyed')
 
-    unlink('gdbm_hash_1')
+    unlink('gdbm_hash_11')
 .end
 
 # Local Variables:
