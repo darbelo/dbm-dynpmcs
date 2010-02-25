@@ -1,5 +1,5 @@
 #! parrot
-# Copyright (C) 2001-2010, Parrot Foundation.
+# Copyright (C) 2005-2010, Parrot Foundation.
 
 =head1 NAME
 
@@ -17,8 +17,6 @@ Tests the C<GDBMHash> PMC.
 
 .sub main
     .include 'test_more.pir'
-    .include 'iglobals.pasm'
-    .local pmc config_hash, interp
 
     plan(48)
 
@@ -121,6 +119,7 @@ Tests the C<GDBMHash> PMC.
     hash_size = hash_1
     is(hash_size, 13, 'After 15 assignments and 2 deletes GDBMHash has size 13')
 
+    hash_1."close"()
     unlink('gdbm_hash_1')
 .end
 
@@ -144,6 +143,7 @@ HASH1_IS_2:
 HASH1_IS_3:
     ok(1, 'After one insert the GDBMHash is')
 
+    hash_1."close"()
     unlink('gdbm_hash_2')
 .end
 
@@ -171,6 +171,7 @@ HASH1_IS_3:
     val_pmc = hash_1["Schluessel"]
     is(val_pmc, 'Wert urspruenglich', 'modify an entry')
 
+    hash_1."close"()
     unlink('gdbm_hash_3')
 .end
 
@@ -200,6 +201,7 @@ HASH1_IS_3:
     exist_flag = exists hash_1[key_out]
     is(exist_flag, 1, 'exists keyed')
 
+    hash_1."close"()
     unlink('gdbm_hash_4')
 .end
 
@@ -229,6 +231,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, 'Wert', 'set string with string key')
 
+    hash_1."close"()
     unlink('gdbm_hash_5')
 .end
 
@@ -261,6 +264,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, 'Wert', 'set string with pmc key')
 
+    hash_1."close"()
     unlink('gdbm_hash_6')
 .end
 
@@ -293,6 +297,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, 'Wert', 'set pmc with string key')
 
+    hash_1."close"()
     unlink('gdbm_hash_7')
 .end
 
@@ -328,6 +333,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, 'Wert', 'set pmc with pmc key')
 
+    hash_1."close"()
     unlink('gdbm_hash_8')
 .end
 
@@ -357,6 +363,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key_out]
     is(val_pmc, -11012005, 'set intval with a string key')
 
+    hash_1."close"()
     unlink('gdbm_hash_9')
 .end
 
@@ -389,6 +396,7 @@ HASH1_IS_3:
     val_pmc = hash_1[key2]
     is(val_pmc, -1101.2005, 'set float with a pmc key')
 
+    hash_1."close"()
     unlink('gdbm_hash_10')
 .end
 
@@ -413,12 +421,12 @@ HASH1_IS_3:
     exist_flag = exists hash_1["a"]
     is(exist_flag, 0, 'delete keyed')
 
+    hash_1."close"()
     unlink('gdbm_hash_11')
 .end
 
 # Local Variables:
-#   mode: cperl
-#   cperl-indent-level: 4
+#   mode: pir
 #   fill-column: 100
 # End:
-# vim: expandtab shiftwidth=4 filetype=pir:
+# vim: expandtab shiftwidth=4 ft=pir:
