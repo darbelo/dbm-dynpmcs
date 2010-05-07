@@ -16,6 +16,7 @@ Tests the C<GDBMHash> PMC.
 =cut
 
 .sub main
+    $P0 = loadlib 'os'
     .include 'test_more.pir'
 
     plan(48)
