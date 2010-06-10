@@ -46,11 +46,6 @@ Tests the C<GDBMHash> PMC.
   _handler:
     .local pmc e
     .get_results (e)
-    printerr "# Cannot unlink "
-    printerr filename
-    printerr " ("
-    printerr e
-    printerr ")\n"
 .end
 
 .sub test_typeof
